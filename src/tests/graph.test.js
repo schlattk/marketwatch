@@ -14,8 +14,6 @@ describe ('<Chart/> display', () => {
         wrapper = shallow(<Chart uri= {''}/>)
       });
     it ('renders', () => {
-      console.log(wrapper.debug());
-      console.log('length', wrapper.find('.test').length);
       expect(wrapper.exists()).toBe(true); 
     });
     it ('has a div element', () => {
@@ -23,8 +21,8 @@ describe ('<Chart/> display', () => {
     });
     it ('has a state', () => {
         expect(wrapper.state().data).toEqual([]); 
-      });
-
+    });
 });
+
 
 
