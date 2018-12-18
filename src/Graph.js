@@ -15,6 +15,7 @@ export default class Chart extends React.Component{
       .then((result) => {
         this.setState({ data: result });
       })
+      .catch( (er) => { return 0 })
   }
   render() {
     const stockData = Object.keys(this.state).map(i => this.state[i])[0];
@@ -24,7 +25,7 @@ export default class Chart extends React.Component{
         datasets: [{
         borderColor: [
             '#FF6384'
-          ], 
+          ],
         data: chartData,
         label: 'Stockdata',
         maintainAspectRatio: true,
@@ -39,7 +40,7 @@ export default class Chart extends React.Component{
     };
     return (
      <div style={{height:'300px', width:'500px'}}>
-      <Line data={data} options={options}/> 
+      <Line data={data} options={options}/>
     </div>
     );
   }
