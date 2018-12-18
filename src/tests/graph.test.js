@@ -28,14 +28,9 @@ describe ('apiCall', () => {
   beforeEach(() => {
      fetch.resetMocks()
    })
-  it('calls the apiCall function', () => {
+  it('calls the apiCall function once', () => {
     fetch.mockResponseOnce(JSON.stringify({ data: '1234' }));
     let wrapper = shallow(<Chart uri = {''}/>);
     expect(fetch.mock.calls.length).toEqual(1)
   });
-  // test('the apiCall function', () => {
-  //   fetch.mockResponseOnce(JSON.stringify({ data: '1234'}));
-  //   let wrapper = shallow(<Chart uri = {''}/>);
-  //   expect(wrapper.state().data).toEqual([]);
-  // });
 });
