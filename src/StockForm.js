@@ -1,4 +1,5 @@
 import * as React from 'react';
+import chartCall from './index';
 
 export default class StockForm extends React.Component {
   constructor(props) {
@@ -21,10 +22,10 @@ export default class StockForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Your favorite stock is: ' + this.state.stock + this.state.period);
     event.preventDefault();
+    chartCall(this.state.stock, this.state.period);
 
-  }
+   }
 
   render() {
     return (
