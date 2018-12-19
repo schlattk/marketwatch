@@ -39,7 +39,7 @@ export default class Chart extends React.Component{
       }
     };
     return (
-     <div style={{height:'300px', width:'500px'}}>
+     <div style={ { height:'300px', width:'500px' } }>
       <Line data={data} options={options}/>
     </div>
     );

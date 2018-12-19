@@ -14,7 +14,7 @@ export default class StockForm extends React.Component {
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.value;
     const name = target.name;
     this.setState({
       [name]: value
@@ -39,7 +39,6 @@ export default class StockForm extends React.Component {
             value={this.state.value}
             onChange={this.handleInputChange} />
         </label>
-        <br />
         <label>
           Period:
             <select name = "period" type = "select" value={this.state.value} onChange={this.handleInputChange}>
@@ -49,8 +48,10 @@ export default class StockForm extends React.Component {
               <option value="3m">3months</option>
               </select>
         </label>
-        <br />
-        <input id="submit"type="submit" value="submit" />
+        <label>
+         Submit
+        <input id="submit" type="submit" value="submit"/>
+        </label>
       </form>
     );
   }

@@ -11,21 +11,32 @@ Enzyme.configure({ adapter: new Adapter() });
 describe ('<StockForm/> display', () => {
     let wrapper;
       beforeEach( () => {
-        wrapper = shallow(<StockForm  />)
+        wrapper = mount(<StockForm  />)
       });
-    it('has a form element', () => {
+    test('has a form element', () => {
       expect(wrapper.find('form').length).toBe(1);
     });
-    it('has a input element', () => {
+    test('has two input elements', () => {
       expect(wrapper.find('input').length).toBe(2);
     });
-    it('has a select element', () => {
+    test('has a select element', () => {
       expect(wrapper.find('select').length).toBe(1);
     });
-    it('has a "period" state', () => {
+    test('has a "period" state', () => {
         expect(wrapper.state().period).toEqual('1m');
     });
-    it('has a "stock" state', () => {
+    test('has a "stock" state', () => {
         expect(wrapper.state().stock).toEqual('AAPL');
     });
+    test('form state can be changed - stock', () => {
+      let input = wrapper.find('#first');
+      wrapper.setState({ stock: 'MSFT'});
+      expect(wrapper.state().stock).toEqual('MSFT');
+    });
+    test('form state can be changed - period', () => {
+      let input = wrapper.find('#first');
+      wrapper.setState({ period: '3m'});
+      expect(wrapper.state().period).toEqual('3m');
+    });
+
 });

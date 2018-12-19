@@ -4,13 +4,15 @@ import Chart from './Graph';
 import StockForm from './StockForm'
 import './index.css';
 
+let count = 1;
 const chartCall = function (stock, period) {
   let stockInput = stock.toLowerCase();
   let url = 'https://api.iextrading.com/1.0/stock/' + stockInput + '/chart/' + period;
-    ReactDOM.render(
-    < Chart uri = { url }/>,
-     document.getElementById('chart-container'))
+  let element = <Chart uri = {url}/>
+    ReactDOM.render(element, document.getElementById('chart' + count))
+    count++
   };
+
 
 window.onload = function () { ReactDOM.render(
     <StockForm />, document.getElementById('form-element')

@@ -1,9 +1,58 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  color:red;
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,300);
+
+body{
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 20px;
+	line-height: 1.5;
+	color:#585858;
+	font-weight: 300;
+	margin-left: 50px;
 }
+form {
+	text-align: center;
+}
+#root { max-width: 100%;
+      }
+#spacer { width: 500 px}
+
+#chart1 {
+  float: left;
+  width: 500px;
+  display: block;
+  overflow-x: hidden;
+}
+#chart2 {
+   float: right;
+   max-width: 500px;
+   display: inline-block;
+   overflow-y: hidden;
+}
+#chart3 {
+  float: left;
+  max-width: 500px;
+  display: inline-block;
+  overflow-x: hidden;
+}
+#chart4 {
+  float: right;
+  max-width: 500px;
+  display: inline-block;
+  overflow-x: hidden;
+}
+#chart5 {
+  float: left;
+  max-width: 500px;
+  display: inline-block;
+  overflow-x: hidden;
+}
+#chart5 {
+  float: right;
+  max-width: 500px;
+  display: inline-block;
+  overflow-x: hidden;
+}
+
+
 #first-chart {
   float: left;
   margin-left: 50px;
@@ -18,7 +67,7 @@ body {
   margin-right: 50px;
   margin-bottom: 25px;
   margin-top: 25px;
-} 
+}
 
 #third-chart {
   float: left;
@@ -26,9 +75,4 @@ body {
   margin-right: 25px;
   margin-bottom: 25px;
   margin-top: 25px;
-} 
-
-
-#chart-container {
-  float: left;
 }
