@@ -31,27 +31,27 @@ export default class StockForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Stock:
+        Stock:
+        </label>
           <input
             id="first"
             name="stock"
             type="text"
+            placeholder = "Symbol"
             value={this.state.value}
             onChange={this.handleInputChange} />
-        </label>
+
         <label>
           Period:
+        </label>
             <select name = "period" type = "select" value={this.state.value} onChange={this.handleInputChange}>
               <option value="1d">1day</option>
               <option value="1w">1week</option>
               <option value="1m">1month</option>
               <option value="3m">3months</option>
               </select>
-        </label>
-        <label>
-         Submit
+
         <input id="submit" type="submit" value="submit"/>
-        </label>
       </form>
     );
   }
