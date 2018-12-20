@@ -12,7 +12,7 @@ describe ('<Chart/> display', () => {
     let wrapper;
       beforeEach( () => {
         jest.mock('../apiCall', () => ({ apiCall: jest.fn() }));
-        wrapper = shallow(<Chart uri= {''}/>)
+        wrapper = shallow(<Chart uri= {''} legend = 'AAPL'/>)
       });
     it('renders', () => {
       expect(wrapper.exists()).toBe(true);
@@ -22,6 +22,12 @@ describe ('<Chart/> display', () => {
     });
     it('has a state', () => {
         expect(wrapper.state().data).toEqual([]);
+    });
+    it('has a state - legend', () => {
+      expect(wrapper.state().legend).toEqual('AAPL');
+    });
+    it('has a componentDidMount method', () => {
+      expect(wrapper.instance().componentDidMount).toBeDefined();
     });
 });
 describe ('apiCall', () => {

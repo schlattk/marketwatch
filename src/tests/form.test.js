@@ -23,10 +23,10 @@ describe ('<StockForm/> display', () => {
       expect(wrapper.find('select').length).toBe(1);
     });
     test('has a "period" state', () => {
-        expect(wrapper.state().period).toEqual('1m');
+        expect(wrapper.state().period).toEqual('1d');
     });
     test('has a "stock" state', () => {
-        expect(wrapper.state().stock).toEqual('AAPL');
+        expect(wrapper.state().stock).toEqual('');
     });
     test('form state can be changed - stock', () => {
       let input = wrapper.find('#first');

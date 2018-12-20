@@ -7,6 +7,7 @@ export default class Chart extends React.Component{
     super(props);
     this.state = {
         data: [],
+        legend: ''
     };
   }
   componentDidMount() {
@@ -16,18 +17,18 @@ export default class Chart extends React.Component{
         this.setState({ data: result });
       })
       .catch( (er) => { return 0 })
+      this.setState({ legend: this.props.legend })
   }
   render() {
-    const stockData = Object.keys(this.state).map(i => this.state[i])[0];
-    const chartData = stockData.map((item) => (item.open));
-    const labelData = stockData.map((item) => (item.label));
+    const chartData = this.state.data.map((item) => (item.open));
+    const labelData = this.state.data.map((item) => (item.label));
     const data = {
         datasets: [{
         borderColor: [
             '#FF6384'
           ],
         data: chartData,
-        label: 'Stockdata',
+        label: this.state.legend,
         maintainAspectRatio: true,
         responsive: true,
         }],

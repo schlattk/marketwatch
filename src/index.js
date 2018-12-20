@@ -8,7 +8,8 @@ let count = 1;
 const chartCall = function (stock, period) {
   let stockInput = stock.toLowerCase();
   let url = 'https://api.iextrading.com/1.0/stock/' + stockInput + '/chart/' + period;
-  let element = <Chart uri = {url}/>
+  let legend = stockInput.toUpperCase() + ' ' + period.toUpperCase();
+  let element = <Chart uri = { url } legend = { legend }/>
     ReactDOM.render(element, document.getElementById('chart' + count))
     count++
   };
