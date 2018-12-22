@@ -1,12 +1,14 @@
 import * as React from 'react';
-import chartCall from './index';
+import Chart from './Graph';
+//import './index.css';
 
 export default class StockForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       stock: '',
-      period: '1d'
+      period: '1d',
+      list: []
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,19 +18,30 @@ export default class StockForm extends React.Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    this.setState({
-      [name]: value
+    this.setState((state) => {
+    // Important: read `state` instead of `this.state` when updating.
+    return { [name]: value };
+    // this.setState({
+    //   [name]: value
+    // });
     });
-  }
+  };
+  onAddItem = () => {
+    const values = this.state.list.concat({ stock: this.state.stock, period: this.state.period});
+    this.setState((state) => {
+    return { list: values};
+    });
+  };
 
   handleSubmit(event) {
     event.preventDefault();
-    chartCall(this.state.stock, this.state.period);
-
-   }
+    this.onAddItem();
+  //  chartCall(this.state.list);
+  }
 
   render() {
     return (
+      <section>
       <form onSubmit={this.handleSubmit}>
         <label>
         Stock:
@@ -53,6 +66,12 @@ export default class StockForm extends React.Component {
 
         <input id="submit" type="submit" value="submit"/>
       </form>
+      <div>
+      { (this.state.list || []).map((item, i) => (
+          <Chart key={i} uri = { 'https://api.iextrading.com/1.0/stock/' + item.stock.toUpperCase() + '/chart/' + item.period } legend = { item.stock + ' ' + item.period }/>
+        )) }
+       </div>
+      </section>
     );
   }
 }

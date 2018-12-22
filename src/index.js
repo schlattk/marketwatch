@@ -1,34 +1,32 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Chart from './Graph';
-import StockForm from './StockForm'
 import './index.css';
-
-let count = 1;
-const chartCall = function (stock, period) {
-  let stockInput = stock.toLowerCase();
-  let url = 'https://api.iextrading.com/1.0/stock/' + stockInput + '/chart/' + period;
-  let legend = stockInput.toUpperCase() + ' ' + period.toUpperCase();
-  let element = <Chart uri = { url } legend = { legend }/>
-    ReactDOM.render(element, document.getElementById('chart' + count))
-    count++
-  };
-
+import StockForm from './StockForm'
 
 window.onload = function () { ReactDOM.render(
-    <StockForm />, document.getElementById('form-element')
+    <StockForm />, document.getElementById('root')
   );
 };
-// ReactDOM.render(
-//   < Chart uri = {'https://api.iextrading.com/1.0/stock/aapl/chart/1m'}/>,
-//   document.getElementById('first-chart')
-// );
-// ReactDOM.render(
-//   < Chart uri = {'https://api.iextrading.com/1.0/stock/aapl/chart/1d'}/>,
-//   document.getElementById('second-chart')
-// );
-// ReactDOM.render(
-//   < Chart uri = {'https://api.iextrading.com/1.0/stock/aapl/chart/3m'}/>,
-//   document.getElementById('third-chart')
-// );
-export default chartCall;
+
+// const chartCall = function (list) {
+//   let chartList = [];
+//   list.forEach((item, i) => {
+//     let stockInput = item.stock.toLowerCase();
+//     let url = 'https://api.iextrading.com/1.0/stock/' + stockInput + '/chart/' + item.period;
+//     let legend = stockInput.toUpperCase() + ' ' + item.period.toUpperCase();
+//     chartList.push({url: url, legend: legend });
+//   });
+//   ReactDOM.render(<ChartList charts={chartList}/>, document.getElementById('root'));
+// };
+//
+// function ChartList(props) {
+//     const charts = props.charts;
+//     const listItems = charts.map((item, i) => {
+//         return(
+//             <Chart uri = { item.url } legend = { item.legend } key= { i }/>
+//         )
+//     });
+//     return listItems;
+// };
+
+// export default chartCall;

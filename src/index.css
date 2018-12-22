@@ -16,13 +16,12 @@ form {
 label {
   margin-right: 5px;
   margin-left: 5px;
+  color: red;
 }
-input,
 textarea {
-  // border:none;
   width: 10%;
   padding: 10px;
-  // margin-bottom: 15px;
+  margin-bottom: 15px;
   margin-right: 5px;
   border-radius: 5px;
 }
@@ -31,9 +30,10 @@ input[type="button"] {
 	color: #fff;
 	cursor: pointer;
   margin-left: 10px;
+  width: 20%;
 }
 select {
-  width: 10%;
+  width: 20%;
   margin-right: 10px;
 }
 option {
@@ -47,52 +47,67 @@ select, option {
       }
 #spacer { width: 500 px}
 
+#delete {
+  /* display:inline-block; */
+  width:50;
+  height:50;
+  background-color:#d2d2d2;
+  /* border-radius: 50%; */
+  font-size:12px;
+  line-height:18px;
+  cursor: pointer;
+  /* position: relative; */
+  top: 100px;
+  right: 100px;
+  z-index: 100;
+}
+
 div {
-  width: 500px;
-  display: block;
+  float: left;
+  display: inline-block;
   text-align: center;
   overflow-x: hidden;
   margin-right: 70px;
   margin top: 10px;
   margin-bottom: 10px;
-  margin-left: 50px;
+  margin-left: 25px;
 }
 
-#chart1 {
+ /* #chart1 {
   float: left;
-  /* width: 500px;
+  width: 500px;
   display: block;
-  overflow-x: hidden; */
+  overflow-x: hidden;
 }
 #chart2 {
    float: right;
-   /* max-width: 500px;
+   max-width: 500px;
    display: inline-block;
-   overflow-y: hidden; */
+   overflow-y: hidden;
 }
 #chart3 {
   float: left;
-  /* max-width: 500px;
+  max-width: 500px;
   display: inline-block;
-  overflow-x: hidden; */
+  overflow-x: hidden;
 }
 #chart4 {
   float: right;
-  /* max-width: 500px;
+  max-width: 500px;
   display: inline-block;
-  overflow-x: hidden; */
+  overflow-x: hidden;
 }
 #chart5 {
   float: left;
-  /* max-width: 500px;
+  max-width: 500px;
   display: inline-block;
-  overflow-x: hidden; */
+  overflow-x: hidden;
 }
 #chart6 {
   float: right;
-  /* max-width: 500px;
+  max-width: 500px;
   display: inline-block;
-  overflow-x: hidden; */
+  overflow-x: hidden;
 }
 
 
@@ -118,4 +133,4 @@ div {
   margin-right: 25px;
   margin-bottom: 25px;
   margin-top: 25px;
-}
+}  */

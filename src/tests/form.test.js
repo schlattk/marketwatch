@@ -38,5 +38,17 @@ describe ('<StockForm/> display', () => {
       wrapper.setState({ period: '3m'});
       expect(wrapper.state().period).toEqual('3m');
     });
+    it('has a list array state', () => {
+      expect(wrapper.state().list).toEqual([]);
+    });
+    // it('items can be added to the list', () => {
+    //   wrapper.setState({ stock: 'AAPL' });
+    //   wrapper.setState({ period: '3m' });
+    //   const values = wrapper.state().list.concat({ stock: wrapper.state.stock, period: wrapper.state.period});
+    //   wrapper.setState((state) => {
+    //   return { list: values};
+    //   });
+    //   expect(wrapper.state().list).toEqual([{ stock: 'AAPL', period: '3m' }]);
+    // });
 
 });

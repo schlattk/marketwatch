@@ -29,6 +29,12 @@ describe ('<Chart/> display', () => {
     it('has a componentDidMount method', () => {
       expect(wrapper.instance().componentDidMount).toBeDefined();
     });
+    it('has a delete Button', () => {
+      expect(wrapper.find('button').length).toBe(1);
+    });
+    // it('has a handleClick method', () => {
+    //   expect(wrapper.instance().handleClick).toBeDefined();
+    // });
 });
 describe ('apiCall', () => {
   beforeEach(() => {
