@@ -8,7 +8,6 @@ export default class Chart extends React.Component{
     this.state = {
         data: [],
         legend: '',
-        alive: true
     };
   this.handleClick = this.handleClick.bind(this);
   }
@@ -22,7 +21,7 @@ export default class Chart extends React.Component{
       this.setState({ legend: this.props.legend })
   }
   handleClick() {
-  //  this.setState({ alive: false });
+    if (this.state.alive) { this.setState({ alive: false })};
   }
   render() {
     const chartData = this.state.data.map((item) => (item.open));
@@ -44,14 +43,12 @@ export default class Chart extends React.Component{
         position: 'bottom',
       }
     };
+    return (
+       <div style={ { height:'300px', width:'500px' } }>
+        <Line data={ data } options={ options }/>
+        <button id="delete" onClick = { this.props.delEvent }>delete</button>
+       </div>
+      )
 
-      if (this.state.alive) {
-        return (
-         <div style={ { height:'300px', width:'500px' } }>
-          <Line data={data} options={options}/>
-          <button id="delete" onClick = { this.handleClick }>delete</button>
-         </div>
-        )
-      }
   }
 }

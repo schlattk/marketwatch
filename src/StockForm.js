@@ -1,14 +1,18 @@
 import * as React from 'react';
-import Chart from './Graph';
-//import './index.css';
+import Chart from './Chart';
+import uniqueId from 'react-html-id'
 
 export default class StockForm extends React.Component {
   constructor(props) {
     super(props);
+    uniqueId.enableUniqueIds(this);
+
     this.state = {
       stock: '',
       period: '1d',
-      list: []
+      list: [],
+      id: 0,
+      counter: 0
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,25 +23,29 @@ export default class StockForm extends React.Component {
     const value = target.value;
     const name = target.name;
     this.setState((state) => {
-    // Important: read `state` instead of `this.state` when updating.
-    return { [name]: value };
-    // this.setState({
-    //   [name]: value
-    // });
+      return { [name]: value, id: this.state.id + 1 };
     });
+
   };
   onAddItem = () => {
-    const values = this.state.list.concat({ stock: this.state.stock, period: this.state.period});
+    const values = this.state.list.concat({ stock: this.state.stock, period: this.state.period, id: this.state.id });
     this.setState((state) => {
-    return { list: values};
+    return { list: values };
     });
   };
-
   handleSubmit(event) {
     event.preventDefault();
     this.onAddItem();
-  //  chartCall(this.state.list);
   }
+
+  deleteChart = (index, e) => {
+    let charts = [];
+    this.state.list.forEach((item) => {
+      if(item.id !== index){ charts.push(item) }
+      console.log(index);
+    })
+    this.setState({ list: charts });
+  };
 
   render() {
     return (
@@ -68,7 +76,7 @@ export default class StockForm extends React.Component {
       </form>
       <div>
       { (this.state.list || []).map((item, i) => (
-          <Chart key={i} uri = { 'https://api.iextrading.com/1.0/stock/' + item.stock.toUpperCase() + '/chart/' + item.period } legend = { item.stock + ' ' + item.period }/>
+          <Chart key = { item.id } delEvent ={ this.deleteChart.bind(this, item.id) } uri = { 'https://api.iextrading.com/1.0/stock/' + item.stock.toUpperCase() + '/chart/' + item.period } legend = { item.stock + ' ' + item.period }/>
         )) }
        </div>
       </section>

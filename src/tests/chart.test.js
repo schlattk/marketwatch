@@ -1,5 +1,5 @@
 let apiCall = require('../apiCall');
-import Chart from '../Graph';
+import Chart from '../Chart';
 import Enzyme from 'enzyme';
 import { shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
