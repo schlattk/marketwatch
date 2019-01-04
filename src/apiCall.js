@@ -1,4 +1,4 @@
-const apiCall = (uri)=> {
+const apiCall = (uri) => {
     return fetch(uri)
       .then( (res) => {
          return res
@@ -9,5 +9,3 @@ const apiCall = (uri)=> {
  }
 
  export default apiCall;
-
- 

@@ -1,4 +1,4 @@
-let apiCall = require('../apiCall');
+import apiCall from '../apiCall';
 import Chart from '../Chart';
 import Enzyme from 'enzyme';
 import { shallow, mount, render } from 'enzyme';
@@ -32,17 +32,4 @@ describe ('<Chart/> display', () => {
     it('has a delete Button', () => {
       expect(wrapper.find('button').length).toBe(1);
     });
-    // it('has a handleClick method', () => {
-    //   expect(wrapper.instance().handleClick).toBeDefined();
-    // });
-});
-describe ('apiCall', () => {
-  beforeEach(() => {
-     fetch.resetMocks()
-   })
-  it('calls the apiCall function once', () => {
-    fetch.mockResponseOnce(JSON.stringify({ data: '1234' }));
-    let wrapper = shallow(<Chart uri = {''}/>);
-    expect(fetch.mock.calls.length).toEqual(1)
-  });
 });
