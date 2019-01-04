@@ -9,7 +9,6 @@ export default class Chart extends React.Component{
         data: [],
         legend: '',
     };
-  this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
       apiCall(this.props.uri)
@@ -19,9 +18,6 @@ export default class Chart extends React.Component{
       })
       .catch( (er) => { return 0 })
       this.setState({ legend: this.props.legend })
-  }
-  handleClick() {
-    if (this.state.alive) { this.setState({ alive: false })};
   }
   render() {
     const chartData = this.state.data.map((item) => (item.open));

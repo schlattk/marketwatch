@@ -1,11 +1,9 @@
 import * as React from 'react';
 import Chart from './Chart';
-import uniqueId from 'react-html-id'
 
 export default class StockForm extends React.Component {
   constructor(props) {
     super(props);
-    uniqueId.enableUniqueIds(this);
 
     this.state = {
       stock: '',
@@ -38,12 +36,12 @@ export default class StockForm extends React.Component {
     this.onAddItem();
   }
 
-  deleteChart = (index, e) => {
-    let charts = [];
-    this.state.list.forEach((item) => {
-      if(item.id !== index){ charts.push(item) }
-      console.log(index);
-    })
+  deleteChart = (key) => {
+    // let charts = [];
+    // this.state.list.forEach((item) => {
+    //   if(item.id !== key){ charts.push(item) }
+    // })
+    let charts = this.state.list.filter(item => item.id !== key);
     this.setState({ list: charts });
   };
 
@@ -75,8 +73,9 @@ export default class StockForm extends React.Component {
         <input id="submit" type="submit" value="submit"/>
       </form>
       <div>
-      { (this.state.list || []).map((item, i) => (
-          <Chart key = { item.id } delEvent ={ this.deleteChart.bind(this, item.id) } uri = { 'https://api.iextrading.com/1.0/stock/' + item.stock.toUpperCase() + '/chart/' + item.period } legend = { item.stock + ' ' + item.period }/>
+      { (this.state.list || []).map(item => (
+          // <Chart key = { item.id } delEvent ={ this.deleteChart.bind(this, item.id) } uri = { 'https://api.iextrading.com/1.0/stock/' + item.stock.toUpperCase() + '/chart/' + item.period } legend = { item.stock + ' ' + item.period }/>
+          <Chart key = { item.id } delEvent = {() => this.deleteChart(item.id) } uri = { 'https://api.iextrading.com/1.0/stock/' + item.stock.toUpperCase() + '/chart/' + item.period } legend = { item.stock + ' ' + item.period }/>
         )) }
        </div>
       </section>
