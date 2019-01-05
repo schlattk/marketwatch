@@ -37,10 +37,6 @@ export default class StockForm extends React.Component {
   }
 
   deleteChart = (key) => {
-    // let charts = [];
-    // this.state.list.forEach((item) => {
-    //   if(item.id !== key){ charts.push(item) }
-    // })
     let charts = this.state.list.filter(item => item.id !== key);
     this.setState({ list: charts });
   };

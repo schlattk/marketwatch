@@ -1,11 +1,9 @@
-let apiCall = require('../apiCall');
 import StockForm from '../StockForm';
 import Enzyme from 'enzyme';
 import { shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
-import Chart from '../Chart';
-global.fetch = require('jest-fetch-mock');
+jest.mock('react-chartjs-2', () => ({ Line: () => null }))
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -41,30 +39,19 @@ describe ('<StockForm/> display', () => {
       periodInput.simulate('change');
       expect(wrapper.state().period).toEqual('3m');
     });
-    it('has a list array state', () => {
+    test('has a list array state', () => {
       expect(wrapper.state().list).toEqual([]);
     });
-    // it('items can be added to the list', () => {
-    //
-    //   jest.mock('../apiCall', () => ({ apiCall: jest.fn() }));
-    //   //jest.doMock('../Chart', () => ({ Chart: jest.fn() }));
-    //   jest.mock('../Chart', () => () =><span>Chart</span>);
-    //   jest.mock('react-chartjs-2', () => ({
-    //         Line: () => null,
-    //       }))
-    //
-    //   // jest.doMock('../Chart', () => {
-    //   //   const Chart = () => <div />;
-    //   //   return Chart; });
-    //   const stockInput = wrapper.find('#first');
-    //   stockInput.instance().value = 'MSFT';
-    //   stockInput.simulate('change');
-    //   const periodInput = wrapper.find('select');
-    //   periodInput.instance().value = '3m';
-    //   periodInput.simulate('change');
-    //   const submitButton = wrapper.find('#submit');
-    //   submitButton.simulate('submit');
-    //   expect(wrapper.state().list).toEqual([{ stock: 'MSFT', period: '3m' }]);
-    // });
+    test('items can be added to the list', () => {
+      const stockInput = wrapper.find('#first');
+      stockInput.instance().value = 'MSFT';
+      stockInput.simulate('change');
+      const periodInput = wrapper.find('select');
+      periodInput.instance().value = '3m';
+      periodInput.simulate('change');
+      const submitButton = wrapper.find('#submit');
+      submitButton.simulate('submit');
+      expect(wrapper.state().list).toEqual([{ 'id': 2, 'stock': 'MSFT', 'period': '3m' }]);
+    });
 
 });
