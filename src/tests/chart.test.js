@@ -12,7 +12,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe ('<Chart/> display', () => {
     let wrapper;
       beforeEach( () => {
-        //jest.mock('../apiCall', () => ({ apiCall: jest.fn() }));
+    //    let mock = jest.mock('../apiCall', () => ({ apiCall: jest.fn() }));
         wrapper = mount(<Chart uri= {''} legend = 'AAPL'/>)
       });
     test('renders', () => {

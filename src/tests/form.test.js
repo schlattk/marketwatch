@@ -3,7 +3,7 @@ import Enzyme from 'enzyme';
 import { shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
-jest.mock('react-chartjs-2', () => ({ Line: () => null }))
+jest.mock('react-chartjs-2', () => ({ Line: () => <div>Chart</div> }));
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -51,7 +51,32 @@ describe ('<StockForm/> display', () => {
       periodInput.simulate('change');
       const submitButton = wrapper.find('#submit');
       submitButton.simulate('submit');
-      expect(wrapper.state().list).toEqual([{ 'id': 2, 'stock': 'MSFT', 'period': '3m' }]);
+      stockInput.instance().value = 'AAPL';
+      stockInput.simulate('change');
+      periodInput.instance().value = '6m';
+      periodInput.simulate('change');
+      submitButton.simulate('submit');
+      expect(wrapper.state().list).toEqual([{ 'id': 2, 'stock': 'MSFT', 'period': '3m' }, { 'id': 4, 'stock': 'AAPL', 'period': '6m' } ]);
     });
-
+    test('items can be deleted from the list', () => {
+      const stockInput = wrapper.find('#first');
+      stockInput.instance().value = 'MSFT';
+      stockInput.simulate('change');
+      const periodInput = wrapper.find('select');
+      periodInput.instance().value = '3m';
+      periodInput.simulate('change');
+      const submitButton = wrapper.find('#submit');
+      submitButton.simulate('submit');
+      stockInput.instance().value = 'AAPL';
+      stockInput.simulate('change');
+      periodInput.instance().value = '6m';
+      periodInput.simulate('change');
+      submitButton.simulate('submit');
+      let delButton = wrapper.find('#delete').at(1);
+      delButton.simulate('click');
+      expect(wrapper.state().list).toEqual([{ 'id': 2, 'stock': 'MSFT', 'period': '3m' }]);
+      delButton = wrapper.find('#delete').first();
+      delButton.simulate('click');
+      expect(wrapper.state().list).toEqual([]);
+    });
 });

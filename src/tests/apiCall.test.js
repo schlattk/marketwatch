@@ -14,10 +14,20 @@ Enzyme.configure({ adapter: new Adapter() });
   test('calls the API and returns data ', () => {
     fetch.mockResponseOnce(JSON.stringify({data: 12345 }));
 
-    apiCall('google').then(res => result.json())
+    apiCall('google').then(res => res.json())
     .then(res => {
     expect(res.data).toEqual(12345);
     })
+    expect(fetch.mock.calls.length).toEqual(1);
+    expect(fetch.mock.calls[0][0]).toEqual('google');
+  });
+  test('handles a failed API call', () => {
+    fetch.mockRejectOnce('error');
+
+    apiCall('google').then(res => res.json())
+    .then(res => {
+    expect(res.data).toEqual(0);
+    });
     expect(fetch.mock.calls.length).toEqual(1);
     expect(fetch.mock.calls[0][0]).toEqual('google');
   });

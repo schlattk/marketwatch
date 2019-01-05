@@ -16,7 +16,7 @@ export default class Chart extends React.Component{
       .then((result) => {
         this.setState({ data: result });
       })
-      .catch( (er) => { return 0 })
+      //.catch( (er) => { return 0 })
       this.setState({ legend: this.props.legend })
   }
   render() {
