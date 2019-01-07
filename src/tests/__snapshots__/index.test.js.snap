@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StockForm has not changed appearance 1`] = `
+<section>
+  <form
+    onSubmit={[Function]}
+  >
+    <label>
+      Stock:
+    </label>
+    <input
+      id="first"
+      name="stock"
+      onChange={[Function]}
+      placeholder="Symbol"
+      type="text"
+    />
+    <label>
+      Period:
+    </label>
+    <select
+      name="period"
+      onChange={[Function]}
+      type="select"
+    >
+      <option
+        value="1d"
+      >
+        1 day
+      </option>
+      <option
+        value="1m"
+      >
+        1 month
+      </option>
+      <option
+        value="3m"
+      >
+        3 months
+      </option>
+      <option
+        value="6m"
+      >
+        6 months
+      </option>
+    </select>
+    <input
+      id="submit"
+      type="submit"
+      value="submit"
+    />
+  </form>
+  <div />
+</section>
+`;
