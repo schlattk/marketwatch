@@ -3,7 +3,8 @@ import Enzyme from 'enzyme';
 import { shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
-jest.mock('react-chartjs-2', () => ({ Line: () => <div>Chart</div> }));
+//import apiCall from '../apiCall';
+jest.mock('react-chartjs-2', () => ({ Line: () => <div>Mockchart</div> }));
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -56,7 +57,8 @@ describe ('<StockForm/> display', () => {
       periodInput.instance().value = '6m';
       periodInput.simulate('change');
       submitButton.simulate('submit');
-      expect(wrapper.state().list).toEqual([{ 'id': 2, 'stock': 'MSFT', 'period': '3m' }, { 'id': 4, 'stock': 'AAPL', 'period': '6m' } ]);
+      expect(wrapper.state().list).toEqual([{ 'id': 2, 'stock': 'MSFT', 'period': '3m' },
+                                          { 'id': 4, 'stock': 'AAPL', 'period': '6m' }]);
     });
     test('items can be deleted from the list', () => {
       const stockInput = wrapper.find('#first');
@@ -78,5 +80,12 @@ describe ('<StockForm/> display', () => {
       delButton = wrapper.find('#delete').first();
       delButton.simulate('click');
       expect(wrapper.state().list).toEqual([]);
+    });
+    test('StockForm displays charts with given props', () => {
+      wrapper.setState({ list: [{ 'id': 2, 'stock': 'MSFT', 'period': '3m' },
+                                  { 'id': 4, 'stock': 'AAPL', 'period': '6m' }]
+                        });
+      expect(wrapper.find('Chart').length).toBe(2);
+      expect(wrapper.find('Chart').first().text()).toContain('Mockchart');
     });
 });

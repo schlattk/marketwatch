@@ -11,12 +11,11 @@ export default class Chart extends React.Component{
     };
   }
   componentDidMount() {
-      apiCall(this.props.uri)
+      apiCall.call(this.props.uri)
       .then((result) => result.json())
       .then((result) => {
         this.setState({ data: result });
       })
-      //.catch( (er) => { return 0 })
       this.setState({ legend: this.props.legend })
   }
   render() {

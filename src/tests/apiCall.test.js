@@ -14,7 +14,7 @@ Enzyme.configure({ adapter: new Adapter() });
   test('calls the API and returns data ', () => {
     fetch.mockResponseOnce(JSON.stringify({data: 12345 }));
 
-    apiCall('google').then(res => res.json())
+    apiCall.call('google').then(res => res.json())
     .then(res => {
     expect(res.data).toEqual(12345);
     })
@@ -24,7 +24,7 @@ Enzyme.configure({ adapter: new Adapter() });
   test('handles a failed API call', () => {
     fetch.mockRejectOnce('error');
 
-    apiCall('google').then(res => res.json())
+    apiCall.call('google').then(res => res.json())
     .then(res => {
     expect(res.data).toEqual(0);
     });

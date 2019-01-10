@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Chart from './Chart';
+//import apiCall from './apiCall';
 
 export default class StockForm extends React.Component {
   constructor(props) {
@@ -68,9 +69,11 @@ export default class StockForm extends React.Component {
         <input id="submit" type="submit" value="submit"/>
       </form>
       <div>
-      { (this.state.list).map(item => (
+      { (this.state.list || []).map(item => (
           // <Chart key = { item.id } delEvent ={ this.deleteChart.bind(this, item.id) } uri = { 'https://api.iextrading.com/1.0/stock/' + item.stock.toUpperCase() + '/chart/' + item.period } legend = { item.stock + ' ' + item.period }/>
-          <Chart key = { item.id } delEvent = {() => this.deleteChart(item.id) } uri = { 'https://api.iextrading.com/1.0/stock/' + item.stock.toUpperCase() + '/chart/' + item.period } legend = { item.stock + ' ' + item.period }/>
+          <Chart key = { item.id } delEvent = {() => this.deleteChart(item.id) }
+            uri = { 'https://api.iextrading.com/1.0/stock/' + item.stock.toUpperCase() + '/chart/' + item.period }
+            legend = { item.stock + ' ' + item.period }/>
         )) }
        </div>
       </section>
