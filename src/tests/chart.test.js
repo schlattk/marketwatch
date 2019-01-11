@@ -12,7 +12,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe ('<Chart/> display', () => {
     let wrapper;
       beforeEach( () => {
-        wrapper = mount(<Chart apiCall = { apiCall } uri= {'uri'} legend = 'AAPL'/>)
+        wrapper = mount(<Chart uri= {'uri'} legend = 'AAPL'/>)
       });
     test('renders', () => {
       expect(wrapper.exists()).toBe(true);
@@ -26,6 +26,10 @@ describe ('<Chart/> display', () => {
     test('has a state', () => {
         expect(wrapper.state().data).toEqual([]);
     });
+    test('can change state', () => {
+        wrapper.setState({ data: [{ "open":165,"label":"hello" }] });
+        expect(wrapper.state().data).toEqual([{ "open":165,"label":"hello" }]);
+    });
     test('receives a prop and changes state - legend', () => {
       expect(wrapper.state().legend).toEqual('AAPL');
     });
@@ -33,28 +37,38 @@ describe ('<Chart/> display', () => {
       expect(wrapper.instance().componentDidMount).toBeDefined();
     });
 });
-describe('it calls the apiCall function' , () => {
+describe('apiCall/componentDidmount' , () => {
     afterEach(() => {
       apiCall.call.mockClear();
     });
-    test('component state is updated', async () => {
+    test('the apiCall returns data', () => {
+        expect.assertions(1);
         jest.spyOn(apiCall, 'call');
-        apiCall.call.mockResolvedValue('hello');
-        //await apiCall.call();
-        const wrapper = mount(<Chart uri = {'uri'} />);
-        wrapper.update();
-        Promise.resolve(wrapper)
-        .then( (comp) => {
-          comp.update()
-          return comp.update()
-        })
-        .then( () => {
-            expect(apiCall.call).toHaveBeenCalledTimes(1);
-            expect(apiCall.call).toHaveBeenCalledWith('uri');
-            expect(wrapper.state().data).toEqual(2019);
-        })
-        .catch( () => {
-          return 0
-        })
+        apiCall.call.mockResolvedValue('peanut butter');
+        return apiCall.call()
+        .then(data => {
+        expect(data).toBe('peanut butter');
+      });
     });
-  });
+    test('<Chart/> calls componentDidMount' , () => {
+        const call = jest.spyOn(apiCall, 'call');
+        call.mockResolvedValue('peanut butter');
+        const wrapper = mount(<Chart uri= {'uri'} legend = 'AAPL'/>);
+        const didMount = jest.spyOn(wrapper.instance(), 'componentDidMount')
+        wrapper.instance().componentDidMount();
+        expect(didMount.mock.calls.length).toEqual(1);
+    });
+    test('<Chart/> calls apiCall' , () => {
+        const api = jest.spyOn(apiCall, 'call')
+        const wrapper = mount(<Chart uri= {'uri'} legend = 'AAPL'/>);
+        expect(api.mock.calls.length).toEqual(1);
+    });
+    test('<Chart/> renders a chart' , async () => {
+        expect.assertions(1);
+        jest.spyOn(apiCall, 'call')
+        await apiCall.call.mockResolvedValue([{ "open":165,"label":"hello" }]);
+        const wrapper = shallow(<Chart uri= {'uri'} legend = 'AAPL'/>);
+        expect(wrapper.text()).toContain('LineChart');
+        console.log(wrapper.state());
+    });
+});
