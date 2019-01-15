@@ -63,12 +63,12 @@ describe('apiCall/componentDidmount' , () => {
         const wrapper = mount(<Chart uri= {'uri'} legend = 'AAPL'/>);
         expect(api.mock.calls.length).toEqual(1);
     });
-    test('<Chart/> renders a chart' , async () => {
-        expect.assertions(1);
-        jest.spyOn(apiCall, 'call')
-        await apiCall.call.mockResolvedValue([{ "open":165,"label":"hello" }]);
-        const wrapper = shallow(<Chart uri= {'uri'} legend = 'AAPL'/>);
-        expect(wrapper.text()).toContain('LineChart');
-        console.log(wrapper.state());
-    });
+    // test('<Chart/> renders a chart' , async () => {
+    //     expect.assertions(1);
+    //     jest.spyOn(apiCall, 'call')
+    //     await apiCall.call.mockResolvedValue([{ "open":165,"label":"hello" }]);
+    //     const wrapper = shallow(<Chart uri= {'uri'} legend = 'AAPL'/>);
+    //     expect(wrapper.text()).toContain('LineChart');
+    //     console.log(wrapper);
+    // });
 });
