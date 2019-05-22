@@ -1,11 +1,11 @@
 import apiCall from '../apiCall';
 import Chart from '../Chart';
 import Enzyme from 'enzyme';
-import { shallow, mount, render } from 'enzyme';
+import {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
+
 jest.mock('react-chartjs-2', () => ({ Line: () => <div>LineChart</div> }));
-//global.fetch = require('jest-fetch-mock');
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -60,15 +60,7 @@ describe('apiCall/componentDidmount' , () => {
     });
     test('<Chart/> calls apiCall' , () => {
         const api = jest.spyOn(apiCall, 'call')
-        const wrapper = mount(<Chart uri= {'uri'} legend = 'AAPL'/>);
+        mount(<Chart uri= {'uri'} legend = 'AAPL'/>);
         expect(api.mock.calls.length).toEqual(1);
     });
-    // test('<Chart/> renders a chart' , async () => {
-    //     expect.assertions(1);
-    //     jest.spyOn(apiCall, 'call')
-    //     await apiCall.call.mockResolvedValue([{ "open":165,"label":"hello" }]);
-    //     const wrapper = shallow(<Chart uri= {'uri'} legend = 'AAPL'/>);
-    //     expect(wrapper.text()).toContain('LineChart');
-    //     console.log(wrapper);
-    // });
 });

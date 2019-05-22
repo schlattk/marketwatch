@@ -1,8 +1,6 @@
 import apiCall from '../apiCall';
 import Enzyme from 'enzyme';
-import { shallow, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import React from 'react';
 global.fetch = require('jest-fetch-mock');
 
 Enzyme.configure({ adapter: new Adapter() });

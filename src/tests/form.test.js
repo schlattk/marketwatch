@@ -1,11 +1,11 @@
 import StockForm from '../StockForm';
 import Enzyme from 'enzyme';
-import { shallow, mount, render } from 'enzyme';
+import {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import helper from './helper.js';
-jest.mock('react-chartjs-2', () => ({ Line: () => <div>Mockchart</div> }));
 
+jest.mock('react-chartjs-2', () => ({ Line: () => <div>Mockchart</div> }));
 Enzyme.configure({ adapter: new Adapter() });
 
 describe ('<StockForm/> display', () => {
