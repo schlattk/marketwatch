@@ -7,6 +7,7 @@ router.get('/getData', (req, res) => {
     Asset.find((err, data) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true, data: data });
+
     });
 });
 
@@ -36,6 +37,13 @@ router.post('/putData', (req, res) => {
     let asset = new Asset();
 
     const { id, stock, period } = req.body;
+
+    // if ( !id || !stock || !period) {
+    //     return res.json({
+    //         success: false,
+    //         error: 'INVALID INPUTS'
+    //     });
+    // }
 
     asset.id = id;
     asset.stock = stock;

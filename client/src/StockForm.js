@@ -30,8 +30,13 @@ export default class StockForm extends React.Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
+    let currentIds = this.state.list.map((data) => data.id);
+    let newId = 0;
+    while (currentIds.includes(newId)) {
+      ++newId;
+    }
     this.setState((state) => {
-      return { [name]: value, id: this.state.id + 1 };
+      return { [name]: value, id: newId };
     });
   };
 
@@ -57,8 +62,24 @@ export default class StockForm extends React.Component {
   }
 
   deleteChart = (key) => {
+    this.deleteFromDB(key);
     let charts = this.state.list.filter(item => item.id !== key);
     this.setState({ list: charts });
+  };
+
+  deleteFromDB = idTodelete => {
+    let objIdToDelete = null;
+    this.state.list.forEach(dat => {
+      if (dat.id === idTodelete) {
+        objIdToDelete = dat._id;
+      }
+    });
+
+    axios.delete("http://localhost:3001/deleteData", {
+      data: {
+        id: objIdToDelete
+      }
+    });
   };
 
   render() {
