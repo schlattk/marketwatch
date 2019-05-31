@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Chart from './Chart';
+const axios = require('axios');
 
 export default class StockForm extends React.Component {
   constructor(props) {
@@ -15,6 +16,16 @@ export default class StockForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.getDataFromDb();
+  };
+
+  getDataFromDb = () => {
+    fetch('http://localhost:3001/getData')
+      .then((data) => data.json())
+      .then((res) => this.setState({ list: res.data }));
+  };
+
   handleInputChange(event) {
     const target = event.target;
     const value = target.value;
@@ -22,14 +33,24 @@ export default class StockForm extends React.Component {
     this.setState((state) => {
       return { [name]: value, id: this.state.id + 1 };
     });
-
   };
+
   onAddItem = () => {
-    const values = this.state.list.concat({ stock: this.state.stock, period: this.state.period, id: this.state.id });
+    let id = this.state.id;
+    let stock = this.state.stock;
+    let period = this.state.period;
+
+    axios.post('http://localhost:3001/putData', {
+      id: id,
+      stock: stock,
+      period: period
+    });
+    const values = this.state.list.concat({ stock: stock, period: period, id: id });
     this.setState((state) => {
     return { list: values };
     });
   };
+
   handleSubmit(event) {
     event.preventDefault();
     this.onAddItem();

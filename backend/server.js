@@ -8,11 +8,11 @@ const app = express();
 app.use(cors());
 const router = express.Router();
 var indexRouter = require('./routes/index');
+const mongodb = require('./env');
 
 
 // this is our MongoDB database
-const dbRoute =
-  'mongodb://jelo:password1@ds249583.mlab.com:49583/fullstack_app';
+const dbRoute = mongodb;
 
 // connects our back end code with the database
 mongoose.connect(dbRoute, { useNewUrlParser: true });
