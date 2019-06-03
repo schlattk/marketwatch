@@ -12,6 +12,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe ('<Chart/> display', () => {
     let wrapper;
       beforeEach( () => {
+        
         wrapper = mount(<Chart uri= {'uri'} legend = 'AAPL'/>)
       });
     test('renders', () => {

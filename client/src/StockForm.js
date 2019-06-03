@@ -44,15 +44,18 @@ export default class StockForm extends React.Component {
     let id = this.state.id;
     let stock = this.state.stock;
     let period = this.state.period;
+    this.putData(id, stock, period)
+    const values = this.state.list.concat({ stock: stock, period: period, id: id });
+    this.setState((state) => {
+    return { list: values };
+    });
+  };
 
+  putData = (id, stock, period) => {
     axios.post('http://localhost:3001/putData', {
       id: id,
       stock: stock,
       period: period
-    });
-    const values = this.state.list.concat({ stock: stock, period: period, id: id });
-    this.setState((state) => {
-    return { list: values };
     });
   };
 

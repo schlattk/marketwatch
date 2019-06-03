@@ -6,6 +6,7 @@ import React from 'react';
 import helper from './helper.js';
 
 jest.mock('react-chartjs-2', () => ({ Line: () => <div>Mockchart</div> }));
+jest.mock('axios');
 Enzyme.configure({ adapter: new Adapter() });
 
 describe ('<StockForm/> display', () => {
@@ -47,10 +48,10 @@ describe ('<StockForm/> display', () => {
       helper.stock(wrapper, 'AAPL');
       helper.period(wrapper, '6m');
       submitButton.simulate('submit');
-      expect(wrapper.state().list).toEqual([{ 'id': 2, 'stock': 'MSFT', 'period': '3m' },
-                                          { 'id': 4, 'stock': 'AAPL', 'period': '6m' }]);
+      expect(wrapper.state().list).toEqual([{ 'id': 0, 'stock': 'MSFT', 'period': '3m' },
+                                          { 'id': 1, 'stock': 'AAPL', 'period': '6m' }]);
     });
-    test('items can be deleted from the list', () => {
+    test('items can be deleted from the list => 1', () => {
       helper.stock(wrapper, 'MSFT');
       helper.period(wrapper, '3m');
       const submitButton = wrapper.find('#submit');
@@ -60,11 +61,24 @@ describe ('<StockForm/> display', () => {
       submitButton.simulate('submit');
       let delButton = wrapper.find('#delete').at(1);
       delButton.simulate('click');
-      expect(wrapper.state().list).toEqual([{ 'id': 2, 'stock': 'MSFT', 'period': '3m' }]);
+      expect(wrapper.state().list).toEqual([{ 'id': 0, 'stock': 'MSFT', 'period': '3m' }]);
       delButton = wrapper.find('#delete').first();
       delButton.simulate('click');
       expect(wrapper.state().list).toEqual([]);
     });
+    test('items can be deleted from the list => 2', () => {
+      helper.stock(wrapper, 'MSFT');
+      helper.period(wrapper, '3m');
+      const submitButton = wrapper.find('#submit');
+      submitButton.simulate('submit');
+      helper.stock(wrapper, 'AAPL');
+      helper.period(wrapper, '6m');
+      submitButton.simulate('submit');
+      let delButton = wrapper.find('#delete').at(0);
+      delButton.simulate('click');
+      expect(wrapper.state().list).toEqual([{ 'id': 1, 'stock': 'AAPL', 'period': '6m' }]);
+    });
+
     test('StockForm displays charts with given props', () => {
       wrapper.setState({ list: [{ 'id': 2, 'stock': 'MSFT', 'period': '3m' },
                                   { 'id': 4, 'stock': 'AAPL', 'period': '6m' }]

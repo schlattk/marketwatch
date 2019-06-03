@@ -16,6 +16,9 @@ export default class Chart extends React.Component{
       .then((result) => {
         this.setState({ data: result });
       })
+      .catch((error) => {
+         return 'sorry there is an error'
+      })
       this.setState({ legend: this.props.legend })
   }
   render() {
