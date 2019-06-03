@@ -8,8 +8,8 @@ const app = express();
 app.use(cors());
 const router = express.Router();
 var indexRouter = require('./routes/index');
-const mongodb = require('./env');
 require('custom-env').env();
+require('custom-env').env('test');
 
 // this is our MongoDB database
 // const dbRoute = mongodb;

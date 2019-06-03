@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
+    "start": "concurrently \"cd backend && ENV=dev node server.js\" \"cd client && npm start\"",
     "test": "concurrently \"cd backend && ENV=test node server.js\" \"cd client && npm test a\""
   },
   "repository": {
