@@ -9,11 +9,11 @@ app.use(cors());
 const router = express.Router();
 var indexRouter = require('./routes/index');
 const mongodb = require('./env');
-
+require('custom-env').env();
 
 // this is our MongoDB database
-const dbRoute = mongodb;
-
+// const dbRoute = mongodb;
+const dbRoute = process.env.DB_HOST;
 // connects our back end code with the database
 mongoose.connect(dbRoute, { useNewUrlParser: true });
 

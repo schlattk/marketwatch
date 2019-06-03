@@ -17,6 +17,9 @@ Enzyme.configure({ adapter: new Adapter() });
     .then(res => {
     expect(res.data).toEqual(12345);
     })
+    .catch( (error) => {
+       return 0
+    });
     expect(fetch.mock.calls.length).toEqual(1);
     expect(fetch.mock.calls[0][0]).toEqual('google');
   });
@@ -27,6 +30,9 @@ Enzyme.configure({ adapter: new Adapter() });
     .then(res => res.json())
     .then(res => {
     expect(res.data).toEqual(0);
+    })
+    .catch( (error) => {
+       return 0
     });
     expect(fetch.mock.calls.length).toEqual(1);
     expect(fetch.mock.calls[0][0]).toEqual('google');

@@ -19,5 +19,8 @@
     "mongoose": "^5.5.11",
     "morgan": "^1.9.1",
     "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "custom-env": "^1.0.1"
   }
 }

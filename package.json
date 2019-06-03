@@ -1,0 +1,25 @@
+{
+  "name": "marketwatch",
+  "version": "1.0.0",
+  "description": "**app to follow selected stocks and markets**",
+  "main": "index.js",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
+    "test": "concurrently \"cd backend && ENV=test node server.js\" \"cd client && npm test a\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schlattk/marketwatch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/schlattk/marketwatch/issues"
+  },
+  "homepage": "https://github.com/schlattk/marketwatch#readme"
+}
