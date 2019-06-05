@@ -77,7 +77,6 @@ export default class StockForm extends React.Component {
         objIdToDelete = dat._id;
       }
     });
-
     axios.delete("http://localhost:3001/deleteData", {
       data: {
         id: objIdToDelete

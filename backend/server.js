@@ -8,8 +8,8 @@ const app = express();
 app.use(cors());
 const router = express.Router();
 var indexRouter = require('./routes/index');
-require('custom-env').env();
-require('custom-env').env('test');
+require('custom-env').env(true);
+//require('custom-env').env('test');
 
 // this is our MongoDB database
 // const dbRoute = mongodb;
@@ -19,10 +19,12 @@ mongoose.connect(dbRoute, { useNewUrlParser: true });
 
 let db = mongoose.connection;
 
-db.once('open', () => console.log('connected to the database'));
+db.once('open', () => console.log('you are connected to the database'));
 
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+
 
 // (optional) only made for logging and
 // bodyParser, parses the request body to be a readable json format

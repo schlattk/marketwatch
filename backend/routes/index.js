@@ -37,14 +37,6 @@ router.post('/putData', (req, res) => {
     let asset = new Asset();
 
     const { id, stock, period } = req.body;
-
-    // if ( !id || !stock || !period) {
-    //     return res.json({
-    //         success: false,
-    //         error: 'INVALID INPUTS'
-    //     });
-    // }
-
     asset.id = id;
     asset.stock = stock;
     asset.period = period;
