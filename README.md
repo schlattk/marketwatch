@@ -10,6 +10,8 @@ to run:
 
 clone the repo  
 
+cd marketwatch
+
 npm install
 
 I am using custom-env for switching between test and development database. In the root of the backend
@@ -18,12 +20,14 @@ directory -
 create .env file with the following content:
 
 APP_ENV=dev
+
 DB_HOST='your path to mongodb dev here'
 
 .env.test file with the following content:
 
 APP_ENV=test
-DB_HOST='your path to mongodb dev here'
+
+DB_HOST='your path to mongodb test here'
 
 npm start starts backend server and react server using concurrently
 
