@@ -25,6 +25,7 @@ let wrapper;
         helper.insert(wrapper);
         await new Promise((resolve,reject) => setTimeout (resolve, 2500));
         wrapper.instance().getDataFromDb();
+        await new Promise((resolve,reject) => setTimeout (resolve, 1000));
         expect(wrapper.state().list.length).toBe(1);
       });
 
