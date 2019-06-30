@@ -11,6 +11,7 @@ export default class StockForm extends React.Component {
       list: [],
       id: 0,
       counter: 0
+
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -114,7 +115,7 @@ export default class StockForm extends React.Component {
       <div>
       { (this.state.list || []).map(item => (
           <Chart key = { item.id } delEvent = {() => this.deleteChart(item.id) }
-            uri = { 'https://api.iextrading.com/1.0/stock/' + item.stock.toUpperCase() + '/chart/' + item.period }
+            uri = { 'https://sandbox.iexapis.com/stable/stock/' + item.stock.toUpperCase() + '/chart/' + item.period + '?token=Tpk_da37825141cf478885c540c632a59a9f' }
             legend = { item.stock + ' ' + item.period }/>
         )) }
        </div>

@@ -9,8 +9,6 @@ app.use(cors());
 const router = express.Router();
 var indexRouter = require('./routes/index');
 require('custom-env').env(true);
-//require('custom-env').env('test');
-
 // this is our MongoDB database
 // const dbRoute = mongodb;
 const dbRoute = process.env.DB_HOST;

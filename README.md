@@ -1,5 +1,7 @@
 **app to follow selected stocks and markets**
 
+This app uses iexcloud as the datasource with a public api key
+
 graphical illustration of price movements for selected stocks
 
 created with create-react-app and chart js as well as node server for database api
