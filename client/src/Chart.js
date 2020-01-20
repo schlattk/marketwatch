@@ -28,13 +28,17 @@ export default class Chart extends React.Component{
     const labelData = this.state.data.map(item => item.label);
     const rawData = this.state.data.map(item => item.open);
     const movingAverage30 = movingAverage(rawData, 30);
+    const length = movingAverage30.length;
+    var openObject = openData.map((item, i) => ({ x : labelData[i], y: item }));
+    var movingAverage30Object = movingAverage30.map((item, i) => ({ x : labelData.slice(-length)[i], y: item }));
+    console.log(movingAverage30Object);
     const data = {
         datasets: [
           {
         borderColor: [
             '#FF6384'
           ],
-        data: openData,
+        data: openObject,
         label: this.state.legend,
         maintainAspectRatio: true,
         responsive: true,
@@ -43,20 +47,22 @@ export default class Chart extends React.Component{
         borderColor: [
             '#CCCCB3'
           ],
-        data: movingAverage30,
+        data: movingAverage30Object,
         //label: this.state.legend,
         maintainAspectRatio: true,
         responsive: true,
         }
-
-
-    ],
-        labels: labelData
+      ],
     };
     const options = {
       legend: {
         position: 'bottom',
-      }
+      },
+      scales: {
+      xAxes: [{
+        type: 'time'
+      }]
+    }
     };
     return (
        <div style={ { height:'300px', width:'500px' } }>
