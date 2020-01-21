@@ -9,6 +9,8 @@ export default class Chart extends React.Component{
     this.state = {
         data: [],
         legend: '',
+        ma1: '',
+        ma2: '',
     };
   }
   componentDidMount() {
@@ -16,7 +18,9 @@ export default class Chart extends React.Component{
       .then((result) => result.json())
       .then((result) => {
         this.setState({ data: result,
-                        legend: this.props.legend
+                        legend: this.props.legend,
+                        ma1: this.props.ma1,
+                        ma2: this.props.ma2,
                       });
        })
       .catch((error) => {
@@ -26,12 +30,15 @@ export default class Chart extends React.Component{
   render() {
     const openData = this.state.data.map(item => item.open);
     const labelData = this.state.data.map(item => item.label);
-    const rawData = this.state.data.map(item => item.open);
-    const movingAverage30 = movingAverage(rawData, 30);
-    const length = movingAverage30.length;
+    const rawData1 = this.state.data.map(item => item.open);
+    const rawData2 = this.state.data.map(item => item.open);
+    const movingAverage1 = movingAverage(rawData1, parseInt(this.state.ma1));
+    const movingAverage2 = movingAverage(rawData2, parseInt(this.state.ma2));
+    const ma1length = movingAverage1.length;
+    const ma2length = movingAverage2.length;
     var openObject = openData.map((item, i) => ({ x : labelData[i], y: item }));
-    var movingAverage30Object = movingAverage30.map((item, i) => ({ x : labelData.slice(-length)[i], y: item }));
-    console.log(movingAverage30Object);
+    var movingAverage1Object = movingAverage1.map((item, i) => ({ x : labelData.slice(-ma1length)[i], y: item }));
+    var movingAverage2Object = movingAverage2.map((item, i) => ({ x : labelData.slice(-ma2length)[i], y: item }));
     const data = {
         datasets: [
           {
@@ -47,8 +54,17 @@ export default class Chart extends React.Component{
         borderColor: [
             '#CCCCB3'
           ],
-        data: movingAverage30Object,
-        //label: this.state.legend,
+        data: movingAverage1Object,
+        label: `${this.state.ma1} day MA`,
+        maintainAspectRatio: true,
+        responsive: true,
+      },
+        {
+        borderColor: [
+            '#080505'
+          ],
+        data: movingAverage2Object,
+        label: `${this.state.ma2} day MA`,
         maintainAspectRatio: true,
         responsive: true,
         }

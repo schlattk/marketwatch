@@ -36,10 +36,12 @@ router.delete('/deleteData', (req, res) => {
 router.post('/putData', (req, res) => {
     let asset = new Asset();
 
-    const { id, stock, period } = req.body;
+    const { id, stock, period, ma1, ma2 } = req.body;
     asset.id = id;
     asset.stock = stock;
     asset.period = period;
+    asset.ma1 = ma1;
+    asset.ma2 = ma2;
     asset.save((err) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true });

@@ -6,7 +6,9 @@ const AssetSchema = new Schema(
     {
         id: Number,
         stock: String,
-        period: String
+        period: String,
+        ma1: String,
+        ma2: String
     },
     { timestamps: true }
 );
