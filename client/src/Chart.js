@@ -30,10 +30,10 @@ export default class Chart extends React.Component{
   render() {
     const openData = this.state.data.map(item => item.open);
     const labelData = this.state.data.map(item => item.label);
-    const rawData1 = this.state.data.map(item => item.open);
-    const rawData2 = this.state.data.map(item => item.open);
-    const movingAverage1 = movingAverage(rawData1, parseInt(this.state.ma1));
-    const movingAverage2 = movingAverage(rawData2, parseInt(this.state.ma2));
+    // const rawData1 = this.state.data.map(item => item.open);
+    // const rawData2 = this.state.data.map(item => item.open);
+    const movingAverage1 = movingAverage(openData, parseInt(this.state.ma1));
+    const movingAverage2 = movingAverage(openData, parseInt(this.state.ma2));
     const ma1length = movingAverage1.length;
     const ma2length = movingAverage2.length;
     var openObject = openData.map((item, i) => ({ x : labelData[i], y: item }));
