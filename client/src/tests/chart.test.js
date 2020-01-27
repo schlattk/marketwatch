@@ -4,6 +4,7 @@ import Enzyme from 'enzyme';
 import {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
+import helper from './helper';
 
 jest.mock('react-chartjs-2', () => ({ Line: () => <div>LineChart</div> }));
 
@@ -12,8 +13,8 @@ Enzyme.configure({ adapter: new Adapter() });
 describe ('<Chart/> display', () => {
     let wrapper;
       beforeEach( () => {
-        
-        wrapper = mount(<Chart uri= {'uri'} legend = 'AAPL'/>)
+
+        wrapper = mount(<Chart uri= 'uri' legend = 'AAPL' ma1 = '10' ma2 = '10' />)
       });
     test('renders', () => {
       expect(wrapper.exists()).toBe(true);
@@ -27,16 +28,14 @@ describe ('<Chart/> display', () => {
     test('has a state', () => {
         expect(wrapper.state().data).toEqual([]);
     });
-    test('can change state', () => {
-        wrapper.setState({ data: [{ "open":165,"label":"hello" }] });
-        expect(wrapper.state().data).toEqual([{ "open":165,"label":"hello" }]);
-    });
-    test('receives a prop and changes state - legend', () => {
-      expect(wrapper.state().legend).toEqual('AAPL');
-    });
     test('has a componentDidMount method', () => {
       expect(wrapper.instance().componentDidMount).toBeDefined();
     });
+    test('can change state', () => {
+        wrapper.setState({ data: [{ "open":165,"label":"hello", "ma1": 10, "ma2": 10 }] });
+        expect(wrapper.state().data).toEqual([{ "open":165,"label":"hello", "ma1": 10, "ma2": 10 }]);
+    });
+
 });
 describe('apiCall/componentDidmount' , () => {
     afterEach(() => {

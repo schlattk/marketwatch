@@ -108,7 +108,7 @@ export default class StockForm extends React.Component {
         <label>
           Period:
         </label>
-            <select name = "period" type = "select" value={this.state.value} onChange={this.handleInputChange}>
+            <select name = "period" id="period" type = "select" value={this.state.value} onChange={this.handleInputChange}>
               <option value="1d">1 day</option>
               <option value="1m">1 month</option>
               <option value="3m">3 months</option>
@@ -117,7 +117,7 @@ export default class StockForm extends React.Component {
         <label>
           MA1:
         </label>
-            <select name = "ma1" type = "select" value={this.state.value} onChange={this.handleInputChange}>
+            <select name = "ma1" id="ma1" type = "select" value={this.state.value} onChange={this.handleInputChange}>
               <option value="10">10 day</option>
               <option value="30">30 day</option>
               <option value="60">60 day</option>
@@ -125,7 +125,7 @@ export default class StockForm extends React.Component {
         <label>
           MA2:
         </label>
-            <select name = "ma2" type = "select" value={this.state.value} onChange={this.handleInputChange}>
+            <select name = "ma2" id="ma2" type = "select" value={this.state.value} onChange={this.handleInputChange}>
               <option value="10">10 day</option>
               <option value="30">30 day</option>
               <option value="60">60 day</option>
