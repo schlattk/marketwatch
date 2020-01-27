@@ -19,6 +19,7 @@ exports[`StockForm has not changed appearance 1`] = `
       Period:
     </label>
     <select
+      id="period"
       name="period"
       onChange={[Function]}
       type="select"
@@ -42,6 +43,56 @@ exports[`StockForm has not changed appearance 1`] = `
         value="6m"
       >
         6 months
+      </option>
+    </select>
+    <label>
+      MA1:
+    </label>
+    <select
+      id="ma1"
+      name="ma1"
+      onChange={[Function]}
+      type="select"
+    >
+      <option
+        value="10"
+      >
+        10 day
+      </option>
+      <option
+        value="30"
+      >
+        30 day
+      </option>
+      <option
+        value="60"
+      >
+        60 day
+      </option>
+    </select>
+    <label>
+      MA2:
+    </label>
+    <select
+      id="ma2"
+      name="ma2"
+      onChange={[Function]}
+      type="select"
+    >
+      <option
+        value="10"
+      >
+        10 day
+      </option>
+      <option
+        value="30"
+      >
+        30 day
+      </option>
+      <option
+        value="60"
+      >
+        60 day
       </option>
     </select>
     <input

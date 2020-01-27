@@ -8,6 +8,8 @@ export default class StockForm extends React.Component {
     this.state = {
       stock: '',
       period: '1d',
+      ma1: 10,
+      ma2: 10,
       list: [],
       id: 0,
       counter: 0
@@ -45,18 +47,22 @@ export default class StockForm extends React.Component {
     let id = this.state.id;
     let stock = this.state.stock;
     let period = this.state.period;
-    this.putData(id, stock, period)
-    const values = this.state.list.concat({ stock: stock, period: period, id: id });
+    let ma1 = this.state.ma1;
+    let ma2 = this.state.ma2;
+    this.putData(id, stock, period, ma1, ma2)
+    const values = this.state.list.concat({ stock: stock, period: period, ma1: ma1, ma2: ma2,id: id });
     this.setState((state) => {
     return { list: values };
     });
   };
 
-  putData = (id, stock, period) => {
+  putData = (id, stock, period, ma1, ma2) => {
     axios.post('http://localhost:3001/putData', {
       id: id,
       stock: stock,
-      period: period
+      period: period,
+      ma1: ma1,
+      ma2: ma2
     });
   };
 
@@ -99,15 +105,30 @@ export default class StockForm extends React.Component {
             placeholder = "Symbol"
             value={this.state.value}
             onChange={this.handleInputChange} />
-
         <label>
           Period:
         </label>
-            <select name = "period" type = "select" value={this.state.value} onChange={this.handleInputChange}>
+            <select name = "period" id="period" type = "select" value={this.state.value} onChange={this.handleInputChange}>
               <option value="1d">1 day</option>
               <option value="1m">1 month</option>
               <option value="3m">3 months</option>
               <option value="6m">6 months</option>
+              </select>
+        <label>
+          MA1:
+        </label>
+            <select name = "ma1" id="ma1" type = "select" value={this.state.value} onChange={this.handleInputChange}>
+              <option value="10">10 day</option>
+              <option value="30">30 day</option>
+              <option value="60">60 day</option>
+              </select>
+        <label>
+          MA2:
+        </label>
+            <select name = "ma2" id="ma2" type = "select" value={this.state.value} onChange={this.handleInputChange}>
+              <option value="10">10 day</option>
+              <option value="30">30 day</option>
+              <option value="60">60 day</option>
               </select>
 
         <input id="submit" type="submit" value="submit"/>
@@ -116,7 +137,9 @@ export default class StockForm extends React.Component {
       { (this.state.list || []).map(item => (
           <Chart key = { item.id } delEvent = {() => this.deleteChart(item.id) }
             uri = { 'https://sandbox.iexapis.com/stable/stock/' + item.stock.toUpperCase() + '/chart/' + item.period + '?token=Tpk_da37825141cf478885c540c632a59a9f' }
-            legend = { item.stock + ' ' + item.period }/>
+            legend = { item.stock + ' ' + item.period }
+            ma1 = { item.ma1 }
+            ma2 = { item.ma2 }/>
         )) }
        </div>
       </section>
