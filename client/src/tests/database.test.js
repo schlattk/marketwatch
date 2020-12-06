@@ -44,7 +44,6 @@ let wrapper;
         await new Promise((resolve,reject) => setTimeout (resolve, 1500));
         wrapper.instance().getDataFromDb();
         await new Promise((resolve,reject) => setTimeout (resolve, 1500));
-        expect(wrapper.state().list[0].id).toBe(1);
+        expect(wrapper.state().list.length).toBe(1);
       });
-
 });
