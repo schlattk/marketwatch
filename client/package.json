@@ -8,9 +8,9 @@
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "jest-fetch-mock": "^2.1.0",
-    "react": "^16.6.3",
+    "react": "^16.14.0",
     "react-chartjs-2": "^2.7.4",
-    "react-dom": "^16.6.3",
+    "react-dom": "^16.14.0",
     "react-html-id": "^0.1.5",
     "react-scripts": "2.1.1",
     "uuid": "^3.3.2"
