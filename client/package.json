@@ -9,7 +9,7 @@
     "enzyme-adapter-react-16": "^1.7.1",
     "jest-fetch-mock": "^2.1.0",
     "react": "^16.6.3",
-    "react-chartjs-2": "^2.7.4",
+    "react-chartjs-2": "^2.11.2",
     "react-dom": "^16.6.3",
     "react-html-id": "^0.1.5",
     "react-scripts": "2.1.1",
